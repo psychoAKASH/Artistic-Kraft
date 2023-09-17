@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block head_title %} Artistic Kraft {% endblock %}</title>
+        {% include "head/css.html" %}
+      
+       
+       
+    </head>
+    <body class="flex flex-col min-h-screen bg-white dark:bg-gray-800">
+
+        <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800 border-b border-red-500 "> 
+            <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between " aria-label="Global">
+              <div class="flex items-center justify-between">
+                <a class="flex-none" href="{% url 'home' %}">
+                    <img class="inline-block h-[2 rem] w-[2.875rem]  " src="{% static 'img/logo.png' %}" alt="Logo">
+                    
+                
+             
+                </a>
+              
+                <div class="sm:hidden">
+                   
+                  <button type="button" id = "mobile-menu-button" class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-collapse="#navbar-image-1" aria-controls="navbar-image-1" aria-label="Toggle navigation">
+                    <svg class="hs-collapse-open:hidden w-4 h-4" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                    <svg class="hs-collapse-open:block hidden w-4 h-4" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div id="mobile-menu" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
+                
+                <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5">
+                    <span class="pr-80 text-3xl font-semibold text-purple-600 underline decoration-cyan-500 decoration-dotted">Art!st!c Kraft</span>
+                  <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500" href="{% url 'home' %}" aria-current="page">Home</a>
+                  <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500" href="{% url 'about' %}">About</a>
+                  <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500" href="{% url 'contact' %}">Contact</a>
+                 
+                  <input type="checkbox" id="theme-toggle" class="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent  ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800
+
+before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200">
+<label for="hs-basic-usage" class="sr-only">switch</label>
+                </div>
+              </div>
+            </nav>
+          </header>
+  
+        
+        
+        
+        <div class="flex-grow">
+            {% block content %} {% endblock %}
+        </div>
+
+
+
+
+        <footer class="mt-auto w-full max-w-[85rem]  bottom-0 py-2 px-4 sm:px-6 lg:px-8 mx-auto border-t border-red-500 ">
+            <!-- Grid -->
+            <div class="text-center">
+              <div>
+                <a class="flex-none text-lg font-semibold text-black dark:text-white" href="{% url 'home' %}" aria-label="Brand">Art!st!c Kraft</a>
+              </div>
+              <!-- End Col -->
+          
+              <div class="mt-0">
+                <p class="text-sm text-gray-500">Made by Akash  </p>
+                <p class="text-xs text-gray-500">© Artistic Kraft. 2023 . All rights reserved.</p>
+              </div>
+          
+           
+            </div>
+            <!-- End Grid -->
+          </footer>
+        
+        <script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const body = document.documentElement;
+        
+            // Check if theme preference is stored in local storage
+            const currentTheme = localStorage.getItem('color-theme');
+            
+            
+            
+            if (currentTheme === 'dark')
+            {
+                body.classList.add('dark');
+            }else {
+                body.classList.remove('dark')
+              }
+            themeToggle.addEventListener('click', () => {
+                
+        
+                if (body.classList.contains('dark')) {
+                    body.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    body.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }    
+            });
+        
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+
+
+        </script>
+        
+    
+    </body>
+</html>
